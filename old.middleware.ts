@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getHostnameDataOrDefault } from "./lib/db";
+import { DEFAULT_HOST_NAME } from "./lib/site-db";
 
 export const config = {
   matcher: ["/", "/about", "/_sites/:path"],
@@ -9,7 +10,7 @@ export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
   // Get hostname (e.g. vercel.com, test.vercel.app, etc.)
-  const hostname = req.headers.get("host");
+  const hostname = req.headers.get("host")?? DEFAULT_HOST_NAME;
 
   // If localhost, assign the host value manually
   // If prod, get the custom domain/subdomain value by removing the root URL
