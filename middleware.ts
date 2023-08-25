@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSubdomainPaths } from "./lib/site-db";
+import { DEFAULT_HOST_NAME, getSubdomainPaths } from "./lib/site-db";
 
 export const config = {
   matcher: [
@@ -17,7 +17,7 @@ export const config = {
 
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
-  const hostname = req.headers.get("host");
+  const hostname = req.headers.get("host")?? DEFAULT_HOST_NAME;
 
   console.log("---middleware---");
   console.log(hostname);

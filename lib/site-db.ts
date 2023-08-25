@@ -23,3 +23,5 @@ export async function getSubdomainPaths() {
 }
 
 export default hostnamesDB;
+
+export const DEFAULT_HOST_NAME =  `${DEFAULT_HOST}.https://multi-tenant-next-sage.vercel.app`;
